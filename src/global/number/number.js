@@ -27,6 +27,7 @@ function NumberMaskDirective($locale, $parse, PreFormatters, NumberMasks) {
 
 				var valueToFormat = PreFormatters.clearDelimitersAndLeadingZeros(value) || '0';
 				var formatedValue = viewMask.apply(valueToFormat);
+				var afterModelMask = modelMask.apply(valueToFormat);
 				var actualNumber = parseFloat(modelMask.apply(valueToFormat));
 
 				if (angular.isDefined(attrs.uiNegativeNumber)) {
@@ -46,7 +47,7 @@ function NumberMaskDirective($locale, $parse, PreFormatters, NumberMasks) {
 					ctrl.$render();
 				}
 
-				return actualNumber;
+				return afterModelMask;
 			}
 
 			function formatter(value) {
